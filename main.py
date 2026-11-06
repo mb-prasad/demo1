@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import List, Optional
 
 from fastapi import FastAPI, HTTPException, Response, status
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 app = FastAPI(title="demo1x1 users API")
 
@@ -20,6 +20,14 @@ class UserUpdate(BaseModel):
     name: Optional[str] = None
     email: Optional[str] = None
     age: Optional[int] = None
+
+    @field_validator("name", "email")
+    @classmethod
+    def reject_null(cls, value: Optional[str]) -> Optional[str]:
+        # name and email are required fields, so they cannot be set to null.
+        if value is None:
+            raise ValueError("must not be null")
+        return value
 
 
 class User(UserCreate):
