@@ -65,3 +65,13 @@ curl -X POST http://127.0.0.1:8000/users/1/devices \
 `data/users.json` holds a JSON list of users. A missing or empty file is treated as an empty list.
 
 `data/devices.json` holds a JSON list of devices, each with `id`, `user_id`, `name`, and `type`. A missing or empty file is treated as an empty list.
+
+## Snake game
+
+A terminal snake game lives in `snake.py`. It uses only the standard library, so no extra install is needed.
+
+```bash
+python snake.py
+```
+
+Steer with the arrow keys or `W`/`A`/`S`/`D`. Press `P` to pause, `R` to restart after a game over, and `Q` to quit. The terminal needs to be at least 62 columns by 24 rows.
